@@ -148,7 +148,7 @@ export default function AuthForm() {
     // onError: () => console.log("Login Failed"),
     // scope: "openid profile email",
   });
-  const handleLoginGoogle = useCallback(async () => {
+  // const handleLoginGoogle = useCallback(async () => {
     // const googleToken = cred.access_token;
     // if (googleToken) {
     //   const response: { verifyGoogleToken: string } =
@@ -162,7 +162,7 @@ export default function AuthForm() {
     //     redirect("/");
     //   }
     // }
-  }, []);
+  // }, []);
 
   return isOtpPage ? (
     <div>
