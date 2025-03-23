@@ -141,14 +141,14 @@ export default function AuthForm() {
     // redirect("/");
   };
   const googlelogin = useGoogleLogin({
-    onSuccess: (cred: TokenResponse) => {
-      console.log(cred);
-      handleLoginGoogle(cred);
-    },
-    onError: () => console.log("Login Failed"),
-    scope: "openid profile email",
+    // onSuccess: (cred: TokenResponse) => {
+    //   console.log(cred);
+    //   handleLoginGoogle(cred);
+    // },
+    // onError: () => console.log("Login Failed"),
+    // scope: "openid profile email",
   });
-  const handleLoginGoogle = useCallback(async (cred: TokenResponse) => {
+  const handleLoginGoogle = useCallback(async () => {
     // const googleToken = cred.access_token;
     // if (googleToken) {
     //   const response: { verifyGoogleToken: string } =
