@@ -21,12 +21,7 @@ const codeSample = `function twoSum(nums, target) {
 }`;
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },

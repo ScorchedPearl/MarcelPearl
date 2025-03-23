@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import useScroll from '@/hooks/useScroll';
@@ -17,18 +18,18 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-orange-500 rounded-md flex items-center justify-center">
                 <span className="text-white font-mono font-bold">LOGO</span>
               </div>
               <span className="font-bold text-xl text-white">MarcelPearl</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="nav-link text-white hover:text-orange-500 transition-colors">Home</a>
-            <a href="#pricing" className="nav-link text-white hover:text-orange-500 transition-colors">Features</a>
-            <a href="#faq" className="nav-link text-white hover:text-orange-500 transition-colors">FAQ</a>
+            <Link href="#features" className="nav-link text-white hover:text-orange-500 transition-colors">Home</Link>
+            <Link href="#pricing" className="nav-link text-white hover:text-orange-500 transition-colors">Features</Link>
+            <Link href="#faq" className="nav-link text-white hover:text-orange-500 transition-colors">FAQ</Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -49,31 +50,31 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-black/70 backdrop-blur-md shadow-lg p-4 border-t border-orange-500 animate-fade-in">
           <nav className="flex flex-col space-y-4 px-2">
-            <a 
+            <Link 
               href="#hero" 
               className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="#features" 
               className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="#faq" 
               className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
-            </a>
+            </Link>
             <div className="pt-2 pb-4 flex flex-col space-y-3">
-              <a href="/login" className="py-2 px-4 text-center text-white hover:bg-orange-500 rounded-md transition-colors">
+              <Link href="/login" className="py-2 px-4 text-center text-white hover:bg-orange-500 rounded-md transition-colors">
                 Log in
-              </a>
+              </Link>
               <Button className="bg-orange-500 hover:bg-orange-600 w-full">
                 Sign up free
               </Button>

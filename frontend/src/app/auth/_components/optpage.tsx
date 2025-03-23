@@ -2,7 +2,7 @@
 
 import { OTPInput } from "./otpInput"
 import { Button } from "../../../components/ui/button"
-import { Dispatch, SetStateAction, useState } from "react"
+import { useState } from "react"
 
 export default function OTPEntryPage({generateOTP}:{
  generateOTP:()=>string
@@ -24,7 +24,7 @@ const handleOTPComplete = async (otp: string) => {
      setError("Invalid OTP. Please try again.")
    }
  } catch (err) {
-   setError("An error occurred. Please try again.")
+   setError(`An error occurred ${err}. Please try again.`)
  } finally {
    setIsSubmitting(false)
  }

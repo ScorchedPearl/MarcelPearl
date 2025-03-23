@@ -9,44 +9,44 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LockIcon, MailIcon, UserIcon } from "lucide-react";
 import { useGoogleLogin, TokenResponse } from "@react-oauth/google";
 import OTPEntryPage from "./_components/optpage";
-interface TokenDiffResponse {
-  createCredentialsToken: string;
-}
-interface TokendiffResponse {
-  verifyCredentialsToken: string;
-}
+// interface TokenDiffResponse {
+//   createCredentialsToken: string;
+// }
+// interface TokendiffResponse {
+//   verifyCredentialsToken: string;
+// }
 export default function AuthForm() {
   const [isSignUp, setIsSignUp] = useState(false);
   const {
     register,
     handleSubmit,
-    reset,
-    setError,
+    // reset,
+    // setError,
     formState: { errors },
   } = useForm();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const [isOtpPage, setIsOtpPage] = useState(false);
+  const [isOtpPage, ] = useState(false);
 
   function generateOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
-  async function waitForOtpVerification(checkInterval = 100, timeout = 30000) {
-    return new Promise((resolve, reject) => {
-      const interval = setInterval(() => {
-        if (localStorage.getItem("otpVerified") === "true") {
-          clearInterval(interval);
-          resolve(true);
-          localStorage.removeItem("otpVerified");
-        }
-      }, checkInterval);
+  // async function waitForOtpVerification(checkInterval = 100, timeout = 30000) {
+  //   return new Promise((resolve, reject) => {
+  //     const interval = setInterval(() => {
+  //       if (localStorage.getItem("otpVerified") === "true") {
+  //         clearInterval(interval);
+  //         resolve(true);
+  //         localStorage.removeItem("otpVerified");
+  //       }
+  //     }, checkInterval);
 
-      setTimeout(() => {
-        clearInterval(interval);
-        reject(new Error("OTP verification timed out"));
-      }, timeout);
-    });
-  }
-  const onSubmit = async (data: any) => {
+  //     setTimeout(() => {
+  //       clearInterval(interval);
+  //       reject(new Error("OTP verification timed out"));
+  //     }, timeout);
+  //   });
+  // }
+  const onSubmit = async ( ) => {
     // console.log("Form Data:", data);
     // if(isForgotPassword){
     //   const payload = {
@@ -149,7 +149,7 @@ export default function AuthForm() {
     scope: "openid profile email",
   });
   const handleLoginGoogle = useCallback(async (cred: TokenResponse) => {
-    const googleToken = cred.access_token;
+    // const googleToken = cred.access_token;
     // if (googleToken) {
     //   const response: { verifyGoogleToken: string } =
     //     await graphqlClient.request(verifyGoogleTokenMutation, {
