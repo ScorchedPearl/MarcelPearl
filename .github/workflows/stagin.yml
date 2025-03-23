@@ -1,0 +1,17 @@
+# name: Deploying To Staging
+# on:
+#   push:
+#     branches:
+#       - "main"
+ 
+# jobs:
+#   redeploy_everything:
+#     runs-on: ubuntu-latest
+#     name: Deploying everything to the staging cluster
+
+#     steps:
+#       - run: |
+#           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/key
+#           chmod 600 ~/key
+#           ssh -o StrictHostKeyChecking=no -i ~/key root@${{ secrets.SERVER_IP }} -t "cd /root/ && git pull origin main && pnpm install && pnpm run build && pm2 restart all"
+          
