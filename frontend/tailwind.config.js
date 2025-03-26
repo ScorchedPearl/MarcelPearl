@@ -116,7 +116,19 @@ module.exports = {
         'type': {
           '0%': { width: '0' },
           '100%': { width: '100%' }
-        }
+        },
+								'slide-in-right': {
+					'0%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
+				},
+				'slide-out-right': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'pulse-gentle': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -127,7 +139,12 @@ module.exports = {
         'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite',
-        'type': 'type 3.5s steps(40, end)'
+        'type': 'type 3.5s steps(40, end)',
+								'slide-in-right': 'slide-in-right 0.3s ease-out',
+				'slide-out-right': 'slide-out-right 0.3s ease-out',
+				'enter': 'fade-in 0.3s ease-out, scale-in 0.2s ease-out',
+				'exit': 'fade-out 0.3s ease-out, scale-out 0.2s ease-out',
+				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite'
 			}
 		}
 	},
