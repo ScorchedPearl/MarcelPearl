@@ -5,7 +5,7 @@ export type Item = {
   status: ItemStatus;
 };
 
-export type editorLayout = {
-  id: ItemStatus;
-  className:string;
-};
+// export type editorLayout = {
+//   id: ItemStatus;
+//   className:string;
+// };
