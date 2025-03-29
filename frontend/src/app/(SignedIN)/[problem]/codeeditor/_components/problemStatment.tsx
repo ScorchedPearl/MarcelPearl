@@ -29,18 +29,18 @@ const problemStatement = {
   ]
 };
 
-export default function ProblemStatement({id,itemId}:{id:string,itemId:number}) {
-  const { setNodeRef: setDroppableNodeRef } = useDroppable({
-    id: id,
-  });
-  const { attributes, listeners, setNodeRef: setDraggableNodeRef, transform } = useDraggable({
-    id: itemId,
-  });
-  const style = transform
-    ? {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
-      }
-    : undefined;
+export default function ProblemStatement() {
+  // const { setNodeRef: setDroppableNodeRef } = useDroppable({
+  //   id: id,
+  // });
+  // const { attributes, listeners, setNodeRef: setDraggableNodeRef, transform } = useDraggable({
+  //   id: itemId,
+  // });
+  // const style = transform
+  //   ? {
+  //       transform: `translate(${transform.x}px, ${transform.y}px)`,
+  //     }
+  //   : undefined;
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}

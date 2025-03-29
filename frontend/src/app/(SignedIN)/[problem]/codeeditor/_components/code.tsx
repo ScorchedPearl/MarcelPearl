@@ -6,19 +6,15 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 interface CodeProps {
   initialCode?: string;
   className?: string;
-  id:string;
-  itemId:number
 }
 
 const Code: React.FC<CodeProps> = ({ 
   initialCode = `function twoSum(nums, target) {\n  const map = new Map();\n\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n    \n    if (map.has(complement)) {\n      return [map.get(complement), i];\n    }\n    \n    map.set(nums[i], i);\n  }\n  \n  return [];\n}`,
   className ,
-  id,
-  itemId
 }) => {
-   const { setNodeRef: setDroppableNodeRef } = useDroppable({
-      id: id,
-    });
+  //  const { setNodeRef: setDroppableNodeRef } = useDroppable({
+  //     id: id,
+  //   });
   const [code, setCode] = useState(initialCode);
   const [copied, setCopied] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'darker'>('darker');
@@ -50,15 +46,15 @@ const Code: React.FC<CodeProps> = ({
   };
 
   const lineNumbers = code.split('\n').map((_, i) => i + 1);
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: itemId,
-  });
+  // const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  //   id: itemId,
+  // });
 
-  const style = transform
-    ? {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
-      }
-    : undefined;
+  // const style = transform
+  //   ? {
+  //       transform: `translate(${transform.x}px, ${transform.y}px)`,
+  //     }
+  //   : undefined;
 
   return (
     <motion.div

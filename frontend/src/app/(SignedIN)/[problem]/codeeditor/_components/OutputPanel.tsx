@@ -15,14 +15,12 @@ interface TestCase {
 
 interface TestCasesProps {
   className?: string;
-  id:string;
-  itemId:number
 }
 
-export default function TestCases({className,id,itemId}: TestCasesProps) {
-   const { setNodeRef } = useDroppable({
-      id: id,
-    });
+export default function TestCases({className}: TestCasesProps) {
+  //  const { setNodeRef } = useDroppable({
+  //     id: id,
+  //   });
   const [activeView, setActiveView] = useState<"cases" | "results" | `case-${string}`>("cases");
   const [testCases, setTestCases] = useState<TestCase[]>([
     {
@@ -115,18 +113,18 @@ export default function TestCases({className,id,itemId}: TestCasesProps) {
     });
   };
 
-  useEffect(() => {
-    updateResults();
-  }, [testCases]);
-  const { attributes, listeners, setNodeRef: setDraggableNodeRef, transform } = useDraggable({
-    id: itemId,
-  });
+  // useEffect(() => {
+  //   updateResults();
+  // }, [testCases]);
+  // const { attributes, listeners, setNodeRef: setDraggableNodeRef, transform } = useDraggable({
+  //   id: itemId,
+  // });
 
-  const style = transform
-    ? {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
-      }
-    : undefined;
+  // const style = transform
+  //   ? {
+  //       transform: `translate(${transform.x}px, ${transform.y}px)`,
+  //     }
+  //   : undefined;
 
   return (
     <motion.div

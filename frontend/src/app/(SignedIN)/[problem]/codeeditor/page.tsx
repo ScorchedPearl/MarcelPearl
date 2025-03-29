@@ -62,11 +62,11 @@ export default function CodeEditor() {
       <DndContext onDragEnd={handleDragEnd}>
     <div className="h-screen grid grid-cols-5 gap-4">
      <div className="col-span-2">
-      <ProblemStatement id={editorLayout[0].id} itemId={item[0].id}/>
+      <ProblemStatement />
      </div>
      <div className="col-span-3 max-h-screen">
-      <Code id={editorLayout[1].id} itemId={item[1].id}/>
-      <TestCases className="flex justify-center" id={editorLayout[2].id} itemId={item[2].id}/>
+      <Code/>
+      <TestCases className="flex justify-center" />
      </div>
     </div>
     </DndContext>
@@ -75,9 +75,9 @@ export default function CodeEditor() {
    <>
    <DndContext onDragEnd={handleDragEnd}>
     <div>
-     <ProblemStatement id={editorLayout[0].id} itemId={item[0].id}/>
-     <Code id={editorLayout[1].id} itemId={item[1].id}/>
-     <TestCases className="flex justify-center" id={editorLayout[2].id} itemId={item[2].id}/>
+     <ProblemStatement />
+     <Code/>
+     <TestCases className="flex justify-center"/>
     </div>
     </DndContext>
    </>
