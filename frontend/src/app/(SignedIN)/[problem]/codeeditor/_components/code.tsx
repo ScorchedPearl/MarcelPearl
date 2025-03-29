@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Code2, Copy, Check, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDraggable, useDroppable } from '@dnd-kit/core';
+// import { useDraggable, useDroppable } from '@dnd-kit/core';
 
 interface CodeProps {
   initialCode?: string;

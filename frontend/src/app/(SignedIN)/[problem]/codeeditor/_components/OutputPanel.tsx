@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle, Play, Timer, Cpu, LayoutGrid, LineChart, ArrowRight } from "lucide-react";
-import { useDraggable, useDroppable } from "@dnd-kit/core";
+// import { useDraggable, useDroppable } from "@dnd-kit/core";
 
 interface TestCase {
   id: string;

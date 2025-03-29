@@ -5,7 +5,7 @@ import TestCases from "./_components/OutputPanel";
 import ProblemStatement from "./_components/problemStatment";
 import { useIsMobile } from "@/hooks/useMobile";
 import { editorLayout,Item } from "./types";
-import { DndContext, DragEndEvent, useDroppable } from '@dnd-kit/core';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 export default function CodeEditor() {
  const isMobile = useIsMobile(965);
  const editorLayout:editorLayout[]=[

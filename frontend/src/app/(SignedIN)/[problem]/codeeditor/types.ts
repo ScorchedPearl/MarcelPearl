@@ -1,5 +1,3 @@
-import { JSX } from "react";
-
 export type ItemStatus = "Problem Statement" | "Code" | "Test Cases";
 
 export type Item = {

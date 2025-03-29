@@ -1,4 +1,4 @@
-import { useDraggable, useDroppable } from '@dnd-kit/core';
+// import { useDraggable, useDroppable } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { ChevronRight, Code2, FileText, GitGraph, MessageSquare, Timer } from 'lucide-react';
 
