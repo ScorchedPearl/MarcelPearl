@@ -39,22 +39,12 @@ public class Users implements UserDetails {
     )
     private String email;
 
-
-    @NotBlank(message = "Password is required")
-    @Pattern(
-            regexp = "^(?=.*[!@#$%^&*(),.?\":{}|<>]).{6,}$",
-            message = "Password must contain at least one special character and be at least 6 characters long"
-    )
     private String password;
 
     private int streak=0;
 
     private String bio;
 
-    @Pattern(
-            regexp = "^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|webp))$",
-            message = "Profile photo must be a valid image URL (png, jpg, jpeg, webp)"
-    )
     private String profilePhoto;
 
     @OneToMany(
