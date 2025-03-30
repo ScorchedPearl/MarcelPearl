@@ -5,6 +5,7 @@ import com.project.backend.user.Role;
 import com.project.backend.user.UserRepository;
 import com.project.backend.user.Users;
 import io.jsonwebtoken.Jwts;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

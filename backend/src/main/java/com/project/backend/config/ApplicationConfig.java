@@ -1,5 +1,6 @@
 package com.project.backend.config;
 
+import com.project.backend.auth.AuthenticationResponse;
 import com.project.backend.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,0 +1,104 @@
+# version: "3.8"
+# services:
+#   postgres:
+#     image: postgres
+#     container_name: somu_db
+#     ports:
+#       - 5432:5432
+#     networks:
+#       - user_project
+#     environment:
+#       - POSTGRES_PASSWORD=password
+#       - POSTGRES_DB=my_db
+#       - POSTGRES_USER=marcella
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U marcella -d my_db"]
+#       interval: 5s
+#       retries: 5
+#       start_period: 10s
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data 
+
+#   user_app:
+#     build:
+#       context: ./
+#       dockerfile: Dockerfile
+#     ports:
+#       - 8080:8080
+#       - 3000:3000
+#     networks:
+#       - user_project
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+
+# networks:
+#   user_project:
+#     driver: bridge
+
+# volumes:
+#   postgres_data:  
+
+
+
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    container_name: somu_db
+    ports:
+      - "5432:5432"
+    networks:
+      - user_project
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=my_db
+      - POSTGRES_USER=marcella
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marcella -d my_db"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend-dev
+    ports:
+      - "8080:8080"
+    networks:
+      - user_project
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app/backend 
+      - /app/backend/target 
+    environment:
+      - SPRING_DEVTOOLS_RESTART_ENABLED=true  
+      - SPRING_JPA_SHOW_SQL=true
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend-dev
+    ports:
+      - "3000:3000"
+    networks:
+      - user_project
+    volumes:
+      - ./frontend:/app/frontend 
+      - /app/frontend/node_modules  
+    depends_on:
+      - backend
+
+networks:
+  user_project:
+    driver: bridge
+
+volumes:
+  pgdata:
