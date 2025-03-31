@@ -18,6 +18,14 @@ spring:
           google:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
-
-
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: pearlautherizer@gmail.com
+    password: ${APP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

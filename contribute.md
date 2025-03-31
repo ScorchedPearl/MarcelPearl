@@ -18,7 +18,7 @@
  - Create a Network - `docker network create user_project`
  - Start Postgres
   - `docker run -d --network user_project -e POSTGRES_PASSWORD=password -e POSTGRES_DB=my_db -e POSTGRES_USER=marcella --name somu_db -p 5432:5432 postgres `
- - Build the project - `docker build --network=host -t user_project .`
+ - Build the project - `docker build -t user_project .`
  - start the image - `docker run --network=user_project -p 3000:3000 -p 8080:8080 user_project`
 
 ## Docker Compose Installation

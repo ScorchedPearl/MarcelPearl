@@ -3,10 +3,7 @@ package com.project.backend.auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -25,5 +22,12 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest request
     ){
         return ResponseEntity.ok(service.authenticate(request));
+    }
+    @GetMapping("/otpVerification")
+    public ResponseEntity<Boolean> otpVerification(
+            @RequestBody OtpRequest request
+    ){
+
+        return ResponseEntity.ok(service.otpValidate(request));
     }
 }
