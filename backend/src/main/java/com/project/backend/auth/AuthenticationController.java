@@ -23,7 +23,7 @@ public class AuthenticationController {
     ){
         return ResponseEntity.ok(service.authenticate(request));
     }
-    @GetMapping("/otpVerification")
+    @PostMapping("/otpVerification")
     public ResponseEntity<Boolean> otpVerification(
             @RequestBody OtpRequest request
     ){

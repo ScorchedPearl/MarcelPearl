@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input"; 
@@ -7,162 +7,181 @@ import { Label } from "../../components/ui/label";
 import { Card } from "../../components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import { LockIcon, MailIcon, UserIcon } from "lucide-react";
-import { useGoogleLogin} from "@react-oauth/google";
+import { TokenResponse, useGoogleLogin} from "@react-oauth/google";
 import OTPEntryPage from "./_components/optpage";
-// interface TokenDiffResponse {
-//   createCredentialsToken: string;
-// }
-// interface TokendiffResponse {
-//   verifyCredentialsToken: string;
-// }
+import { redirect } from "next/navigation";
+import axios from "axios"
 export default function AuthForm() {
   const [isSignUp, setIsSignUp] = useState(false);
   const {
     register,
     handleSubmit,
-    // reset,
-    // setError,
+    reset,
+    setError,
     formState: { errors },
   } = useForm();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const [isOtpPage, ] = useState(false);
+  const [isOtpPage,setIsOtpPage ] = useState(false);
 
   function generateOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
-  // async function waitForOtpVerification(checkInterval = 100, timeout = 30000) {
-  //   return new Promise((resolve, reject) => {
-  //     const interval = setInterval(() => {
-  //       if (localStorage.getItem("otpVerified") === "true") {
-  //         clearInterval(interval);
-  //         resolve(true);
-  //         localStorage.removeItem("otpVerified");
-  //       }
-  //     }, checkInterval);
+  async function waitForOtpVerification(checkInterval = 100, timeout = 30000) {
+    return new Promise((resolve, reject) => {
+      const interval = setInterval(() => {
+        if (localStorage.getItem("otpVerified") === "true") {
+          clearInterval(interval);
+          resolve(true);
+          localStorage.removeItem("otpVerified");
+        }
+      }, checkInterval);
 
-  //     setTimeout(() => {
-  //       clearInterval(interval);
-  //       reject(new Error("OTP verification timed out"));
-  //     }, timeout);
-  //   });
-  // }
-  const onSubmit = async ( ) => {
-    // console.log("Form Data:", data);
-    // if(isForgotPassword){
-    //   const payload = {
-    //     email: data.email,
-    //     password: data.password,
-    //   };
-    //   console.log(payload);
-    //   setIsOtpPage(true);
-    //   const otp = generateOTP();
-    //   const sended = await graphqlClient.request(sendOtpEmailQuery, {
-    //     email: data.email,
-    //     otp: otp,
-    //   });
-    //   if (!sended) {
-    //     return alert("Error sending OTP");
-    //   }
-    //   console.log(otp);
-    //   localStorage.setItem("currentOtp", otp);
-    //   await waitForOtpVerification();
-    //   try{
-    //   localStorage.removeItem("currentOtp");
-    //   console.log("Changing Password");
-    //   const changePasswordPayload={
-    //     email:data.email,
-    //     newPassword:data.password
-    //   }
-    //   await graphqlClient.request(changePasswordMutation,changePasswordPayload);
-    //   console.log("Password Changed");
-    //   const token = await graphqlClient.request<TokendiffResponse>(
-    //     verifyCredentialsTokenQuery,
-    //     payload
-    //   );
-    //   window.localStorage.setItem(
-    //     "__Pearl_Token",
-    //     token.verifyCredentialsToken as string
-    //   );
-    //   }catch(err){
-    //     return err;
-    //   }
-    //   reset();
-    //   redirect("/");
-    // }
-    // if (isSignUp) {
-    //   const payload = {
-    //     name: data.name,
-    //     email: data.email,
-    //     password: data.password,
-    //   };
-    //   console.log(payload);
-    //   if (data.password !== data.confirmPassword) {
-    //     return setError("confirmPassword", {
-    //       type: "manual",
-    //       message: "Passwords do not match",
-    //     });
-    //   }
-    //   setIsOtpPage(true);
-    //   const otp = generateOTP();
-    //   const sended = await graphqlClient.request(sendOtpEmailQuery, {
-    //     email: data.email,
-    //     otp: otp,
-    //   });
-    //   if (!sended) {
-    //     return alert("Error sending OTP");
-    //   }
-    //   localStorage.setItem("currentOtp", otp);
-    //   await waitForOtpVerification();
-    //   localStorage.removeItem("currentOtp");
-    //   const token = await graphqlClient.request<TokenDiffResponse>(
-    //     createCredentialsTokenMutation,
-    //     payload
-    //   );
-    //   window.localStorage.setItem(
-    //     "__Pearl_Token",
-    //     token.createCredentialsToken
-    //   );
-    // } else {
-    //   const payload = {
-    //     email: data.email,
-    //     password: data.password,
-    //   };
-    //   console.log(payload);
-    //   const token = await graphqlClient.request<TokendiffResponse>(
-    //     verifyCredentialsTokenQuery,
-    //     payload
-    //   );
-    //   window.localStorage.setItem(
-    //     "__Pearl_Token",
-    //     token.verifyCredentialsToken as string
-    //   );
-    // }
-    // reset();
-    // redirect("/");
+      setTimeout(() => {
+        clearInterval(interval);
+        reject(new Error("OTP verification timed out"));
+      }, timeout);
+    });
+  }
+  const onSubmit = async ( data: { email?: string; password?: string; name?: string; confirmPassword?:string }) => {
+    console.log("Form Data:", data);
+    if(isForgotPassword){
+      const email=data.email;
+      const password=data.password;
+      setIsOtpPage(true);
+      const otp = generateOTP();
+      const message=`Your OTP is ${otp}.Thank You For Registering With Pearl`
+      const response = await axios.post(`http://localhost:8080/api/v1/auth/otpVerification`, {
+        email,
+        otp: message,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if(!response){
+        throw new Error('Failed to send OTP')
+      }
+        console.log(otp);
+      localStorage.setItem("currentOtp", otp);
+      await waitForOtpVerification();
+      try{
+      localStorage.removeItem("currentOtp");
+      console.log("Changing Password");
+      // const changePasswordPayload={
+      //   email:data.email,
+      //   newPassword:data.password
+      // }
+      // await graphqlClient.request(changePasswordMutation,changePasswordPayload);
+      // console.log("Password Changed");
+      // const token = await graphqlClient.request<TokendiffResponse>(
+      //   verifyCredentialsTokenQuery,
+      //   payload
+      // );
+      // window.localStorage.setItem(
+      //   "__Pearl_Token",
+      //   token.verifyCredentialsToken as string
+      // );
+      }catch(err){
+        return err;
+      }
+      reset();
+      redirect("/");
+    }
+    if (isSignUp) {
+      const email=data.email;
+      const password=data.password;
+      const name=data.name;
+      if (data.password !== data.confirmPassword) {
+        return setError("confirmPassword", {
+          type: "manual",
+          message: "Passwords do not match",
+        });
+      }
+      setIsOtpPage(true);
+      const otp = generateOTP();
+      const message=`Your OTP is ${otp}.Thank You For Registering With Pearl`
+      const response = await axios.post(`http://localhost:8080/api/v1/auth/otpVerification`, {
+        email,
+        otp: message,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if(!response){
+        throw new Error('Failed to send OTP')
+      }
+      localStorage.setItem("currentOtp", otp);
+      await waitForOtpVerification();
+      localStorage.removeItem("currentOtp");
+      const response2 = await axios.post(`http://localhost:8080/api/v1/auth/register`, {
+        name,
+        email,
+        password
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if(!response2){
+        throw new Error('Failed to register')
+      }
+      const responseData = await response2.data;
+      responseData.token && localStorage.setItem('__Pearl_Token', responseData.token);
+    } else {
+      const email=data.email;
+      const password=data.password;
+      const response = await axios.post(`http://localhost:8080/api/v1/auth/authenticate`, {
+        email,
+        password
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+       if(!response){
+        throw new Error('Failed to authenticate')
+       }
+       const responseData=await response.data
+       responseData.token && localStorage.setItem('__Pearl_Token',responseData.token)
+      }
+    reset();
+    redirect("/home");
   };
   const googlelogin = useGoogleLogin({
-    // onSuccess: (cred: TokenResponse) => {
-    //   console.log(cred);
-    //   handleLoginGoogle(cred);
-    // },
-    // onError: () => console.log("Login Failed"),
-    // scope: "openid profile email",
+    onSuccess: (cred: TokenResponse) => {
+      console.log(cred);
+      handleLoginGoogle(cred);
+    },
+    onError: () => console.log("Login Failed"),
+    scope: "openid profile email",
   });
-  // const handleLoginGoogle = useCallback(async () => {
-    // const googleToken = cred.access_token;
-    // if (googleToken) {
-    //   const response: { verifyGoogleToken: string } =
-    //     await graphqlClient.request(verifyGoogleTokenMutation, {
-    //       token: googleToken,
-    //     });
-    //   const { verifyGoogleToken } = response;
-    //   console.log(verifyGoogleToken);
-    //   if (verifyGoogleToken) {
-    //     window.localStorage.setItem("__Pearl_Token", verifyGoogleToken);
-    //     redirect("/");
-    //   }
-    // }
-  // }, []);
+  interface GoogleCredential {
+    access_token: string;
+  }
+
+  interface AuthResponse {
+    token: string;
+  }
+
+  const handleLoginGoogle = useCallback(async (cred: GoogleCredential) => {
+    const token = cred.access_token;
+    console.log(token);
+    console.log(`${process.env.HTTP_SERVER_URL}/api/v1/auth/google`);
+    const response = await axios.post(`http://localhost:8080/api/v1/auth/google`, {
+      token,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response) {
+      throw new Error('Failed to authenticate');
+    }
+    const data: AuthResponse = await response.data;
+    data.token && localStorage.setItem('__Pearl_Token', data.token);
+  redirect("/home");
+  }, []);
 
   return isOtpPage ? (
     <div>
