@@ -30,4 +30,20 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(service.otpValidate(request));
     }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(
+            @RequestBody ForgotPasswordRequest request
+    ){
+        service.forgotPassword(request);
+        return ResponseEntity.ok("Password reset link has been sent to your email.");
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(
+            @RequestBody ResetPasswordRequest request
+    ){
+        service.resetPassword(request);
+        return ResponseEntity.ok("Password has been successfully reset.");
+    }
+
 }
