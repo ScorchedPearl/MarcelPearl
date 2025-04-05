@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 bg-gradient-to-tl from-zinc-800 via-gray-950-950 to-black-900 w-full h-16 shadow-lg flex justify-between items-center px-6 z-50">
       <div className="flex items-center space-x-2">
-      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-teal-400 to-emerald-600 flex items-center justify-center">
+      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
             <span className="text-white font-bold">M</span>
       </div>
       <div className="text-white font-semibold text-lg">MarcelPearl</div>
@@ -50,7 +50,7 @@ export default function Navbar() {
       <div className="border border-cyan-100/50 m-3 rounded-xl h-12 w-[520px] flex justify-center items-center backdrop-blur-sm bg-white/5 shadow-inner shadow-emerald-700/20">
         <div className="relative w-[99.5%] h-[95%] flex items-center border rounded-lg border-cyan-100/50">
           <div
-            className="absolute top-0 left-0 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-lg transition-all duration-300 h-10/12 flex items-center px-3 mt-1"
+            className="absolute top-0 left-0 bg-gradient-to-r from-cyan-800 to-cyan-900 rounded-lg transition-all duration-300 h-10/12 flex items-center px-3 mt-1"
             style={{
               width: `${100 / navItems.length}%`,
               transform: `translateX(${navItems.findIndex(

@@ -19,21 +19,21 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 bg-orange-500 rounded-md flex items-center justify-center">
-                <span className="text-white font-mono font-bold">LOGO</span>
+              <div className="h-8 w-8 bg-cyan-500 rounded-md flex items-center justify-center">
+                <span className="text-white font-mono font-bold">M</span>
               </div>
               <span className="font-bold text-xl text-white">MarcelPearl</span>
             </Link>
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="nav-link text-white hover:text-orange-500 transition-colors">Home</Link>
-            <Link href="#pricing" className="nav-link text-white hover:text-orange-500 transition-colors">Features</Link>
-            <Link href="#faq" className="nav-link text-white hover:text-orange-500 transition-colors">FAQ</Link>
+            <Link href="#features" className="nav-link text-white hover:text-cyan-200 transition-colors">Home</Link>
+            <Link href="#pricing" className="nav-link text-white hover:text-cyan-200 transition-colors">Features</Link>
+            <Link href="#faq" className="nav-link text-white hover:text-cyan-200 transition-colors">FAQ</Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="bg-orange-500 hover:bg-orange-600 transition-colors text-white" onClick={() => (window.location.href = '/auth')}>
+            <Button className="bg-cyan-500 hover:bg-teal-600 transition-colors text-white" onClick={() => (window.location.href = '/auth')}>
               Sign Up/ Login
             </Button>
           </div>
@@ -48,34 +48,34 @@ const Navbar = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-black/70 backdrop-blur-md shadow-lg p-4 border-t border-orange-500 animate-fade-in">
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-black/70 backdrop-blur-md shadow-lg p-4 border-t border-cyan-500 animate-fade-in">
           <nav className="flex flex-col space-y-4 px-2">
             <Link 
               href="#hero" 
-              className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
+              className="py-2 px-4 text-white hover:bg-cyan-200 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link 
               href="#features" 
-              className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
+              className="py-2 px-4 text-white hover:bg-cyan-200 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
             </Link>
             <Link 
               href="#faq" 
-              className="py-2 px-4 text-white hover:bg-orange-500 rounded-md transition-colors"
+              className="py-2 px-4 text-white hover:bg-cyan-200 rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
             </Link>
             <div className="pt-2 pb-4 flex flex-col space-y-3">
-              <Link href="/login" className="py-2 px-4 text-center text-white hover:bg-orange-500 rounded-md transition-colors">
+              <Link href="/login" className="py-2 px-4 text-center text-white hover:bg-cyan-200 rounded-md transition-colors">
                 Log in
               </Link>
-              <Button className="bg-orange-500 hover:bg-orange-600 w-full">
+              <Button className="bg-cyan-500 hover:bg-teal-600 w-full">
                 Sign up free
               </Button>
             </div>

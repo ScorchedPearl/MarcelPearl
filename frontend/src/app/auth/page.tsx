@@ -188,11 +188,11 @@ export default function AuthForm() {
       <OTPEntryPage generateOTP={generateOTP} />
     </div>
   ) : (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-b from-black via-orange-950/25 to-black">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-b from-black via-cyan-950/25 to-black">
       <Card className="w-[400px] bg-black/50 backdrop-blur-xl border border-white/10 shadow-xl rounded-lg">
       <div className="p-6 space-y-6">
         <div className="space-y-2 text-center">
-        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-orange-400 via-orange-300 to-orange-200 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-200 bg-clip-text text-transparent">
           {isForgotPassword
           ? "Reset Password"
           : isSignUp
@@ -227,11 +227,11 @@ export default function AuthForm() {
               d="M12 10.2V14h5.6c-.3 1.3-1 2.4-2 3.1v2.6h3.2c1.9-1.8 3-4.3 3-7.1 0-.7-.1-1.3-.2-1.9H12z"
             />
             <path
-              fill="orange"
+              fill="cyan"
               d="M6.8 14.6l-.9.7-2.5 1.9C5.1 20.8 8.4 23 12 23c3 0 5.5-1 7.4-2.6l-3.2-2.5c-.9.6-2.1 1-3.4 1-2.7 0-5-1.8-5.9-4.3z"
             />
             <path
-              fill="orange"
+              fill="cyan"
               d="M3.4 6.7C2.5 8.4 2 10.2 2 12c0 1.8.5 3.6 1.4 5.3l3.4-2.6c-.4-1.1-.6-2.2-.6-2.7 0-.6.2-1.6.6-2.7L3.4 6.7z"
             />
             <path
@@ -352,7 +352,7 @@ export default function AuthForm() {
 
         <Button
           type="submit"
-          className="w-full bg-gradient-to-r from-orange-400 via-orange-300 to-orange-200 text-black font-semibold hover:opacity-90 transition-opacity rounded-lg py-2"
+          className="w-full bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-200 text-black font-semibold hover:opacity-90 transition-opacity rounded-lg py-2"
         >
           {isForgotPassword
           ? "Reset Password"

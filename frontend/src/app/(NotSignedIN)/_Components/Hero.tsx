@@ -78,18 +78,18 @@ const Hero = () => {
              initial={{ x: -20, opacity: 0 }}
              animate={{ x: 0, opacity: 1 }}
              transition={{ duration: 0.6 }}
-             className="inline-block px-3 py-1 bg-gradient-to-r from-orange-500/20 to-black/20 text-orange-300 rounded-full text-sm font-medium mb-6 backdrop-blur-sm"
+             className="inline-block px-3 py-1 bg-gradient-to-r from-teal-500 to-teal-500/20 text-white-300 rounded-full text-sm font-medium mb-6 backdrop-blur-sm"
            >
-             Master Coding Skilss
+             Master Coding Skills
            </motion.div>
            
            <motion.h1
              variants={itemVariants}
-             className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-orange-200"
+             className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-cyan-200"
            >
              Practice coding challenges.
              <br />
-             <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-gray-200">
+             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-200 to-gray-200">
             Ace your interviews.
              </span>
            </motion.h1>
@@ -97,7 +97,7 @@ const Hero = () => {
               variants={itemVariants}
               className="mt-2 text-sm text-gray-400"
             >
-              Created by Vishwas and Saumya Sood.
+              Created by Vishwas and Saumya.
             </motion.p>
 
             <motion.div
@@ -109,7 +109,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 flex items-center gap-2 text-base py-6 px-8 shadow-lg hover:shadow-orange-500/20 transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-r from-cyan-600 to-teal-700 hover:from-cyan-700 hover:to-teal-800 flex items-center gap-2 text-base py-6 px-8 shadow-lg hover:shadow-teal-500/20 transform hover:scale-105 transition-all duration-300"
                 >
                   Get started for free
                   <ArrowRight size={18} />
@@ -122,7 +122,7 @@ const Hero = () => {
               >
                 <Button 
                   variant="outline"
-                  className="bg-black/80 backdrop-blur-sm text-base py-6 px-8 border-orange-200 hover:bg-black hover:border-orange-300 flex items-center gap-2"
+                  className="bg-black/80 backdrop-blur-sm text-base py-6 px-8 border-teal-200 hover:bg-black hover:border-teal-300 flex items-center gap-2"
                 >
                   <Play size={18} />
                   Watch how it works
@@ -159,7 +159,7 @@ const Hero = () => {
                 variants={itemVariants}
                 className="text-sm text-gray-300"
               >
-                <span className="font-semibold text-orange-500">2,000+</span> people joined this week
+                <span className="font-semibold text-cyan-500">2,000+</span> people joined this week
               </motion.p>
             </motion.div>
           </motion.div>
@@ -180,7 +180,7 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -top-6 -left-6 w-24 h-24 bg-orange-500/10 rounded-full"
+              className="absolute -top-6 -left-6 w-24 h-24 bg-cyan-500/10 rounded-full"
             />
             
             <motion.div
@@ -202,7 +202,7 @@ const Hero = () => {
               animate={isHovered ? "hover" : "idle"}
               className="relative p-1 bg-gradient-to-tr from-orange-100 to-black rounded-xl shadow-xl overflow-hidden backdrop-blur-sm"
             >
-              <div className="bg-gradient-to-r from-orange-900 to-black rounded-lg p-4 overflow-hidden">
+              <div className="bg-gradient-to-r from-teal-900 to-black rounded-lg p-4 overflow-hidden">
                 <div className="flex items-center gap-1.5 mb-4">
                   <motion.div
                     whileHover={{ scale: 1.2 }}
@@ -239,7 +239,7 @@ const Hero = () => {
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
-                  className="h-8 w-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600"
+                  className="h-8 w-8 bg-cyan-100 rounded-full flex items-center justify-center text-teal-600"
                 >
                   ✓
                 </motion.div>
