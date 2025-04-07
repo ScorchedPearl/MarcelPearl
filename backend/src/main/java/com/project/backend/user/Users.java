@@ -1,8 +1,6 @@
 package com.project.backend.user;
 
-import com.project.backend.components.Languages;
-import com.project.backend.components.Problems;
-import com.project.backend.components.Submissions;
+import com.project.backend.components.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -70,6 +68,16 @@ public class Users implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Forums> forums;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comments> comments;
+
+    @OneToMany(mappedBy = "user")
+    private List<Likes> likes;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

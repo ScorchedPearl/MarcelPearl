@@ -14,36 +14,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "SUBMISSIONS")
-public class Submissions {
+public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String submittedCode;
-
-    private int beats=0;
-
     @ManyToOne
-    @JoinColumn(
-            name = "user_id",nullable = false
-    )
     private Users user;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "problem_id",nullable = false
-    )
-    private Problems problem;
-
-    @ManyToOne
-    @JoinColumn(
-            name = "language_id",nullable = false
-    )
-    private Languages language;
-
     private LocalDateTime createdAt;
+
+    @ManyToOne
+    private Forums forum;
 
     @PrePersist
     protected void onCreate() {

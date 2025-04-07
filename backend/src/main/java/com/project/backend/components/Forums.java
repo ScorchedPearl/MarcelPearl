@@ -6,44 +6,37 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "SUBMISSIONS")
-public class Submissions {
+public class Forums {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String submittedCode;
-
-    private int beats=0;
-
     @ManyToOne
-    @JoinColumn(
-            name = "user_id",nullable = false
-    )
     private Users user;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "problem_id",nullable = false
-    )
-    private Problems problem;
+    private String title;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "language_id",nullable = false
-    )
-    private Languages language;
+    private String description;
+
+    private String code;
 
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "forum", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Likes> likes;
+
+    @OneToMany(mappedBy = "forum", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comments> comments;
 
     @PrePersist
     protected void onCreate() {
