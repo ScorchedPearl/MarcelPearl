@@ -45,6 +45,13 @@ public class Users implements UserDetails {
 
     private String profilePhoto;
 
+    private String rank;
+
+    @ElementCollection
+    @CollectionTable(name = "user_badges", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "badge")
+    private List<String> badges;
+
     @OneToMany(
             mappedBy = "user"
     )
@@ -77,6 +84,12 @@ public class Users implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Likes> likes;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Contest> contests;
+
+    @OneToMany(mappedBy = "user")
+    private List<ContestPerformance> contestPerformances;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

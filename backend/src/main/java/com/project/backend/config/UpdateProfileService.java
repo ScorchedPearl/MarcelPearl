@@ -28,8 +28,10 @@ public class UpdateProfileService {
             user.setUsername(request.getUsername());
         }
 
-        if(request.getEmail()!=null && !request.getEmail().isBlank()) {
-            user.setEmail(request.getEmail());
+        if (request.getEmail() != null && !request.getEmail().isBlank()) {
+            if (!request.getEmail().equals(currentUserEmail)) {
+                throw new RuntimeException("You are not allowed to change email.");
+            }
         }
 
         if(request.getBio()!=null && !request.getBio().isBlank()) {

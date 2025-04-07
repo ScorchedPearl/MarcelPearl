@@ -28,7 +28,7 @@ public class Languages {
     private String languageLogo;
 
     @ManyToMany(mappedBy = "languages")
-    private List<Users>userList;
+    private List<Users> userList;
 
     @ManyToMany
     @JoinTable(

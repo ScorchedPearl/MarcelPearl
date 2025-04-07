@@ -1,18 +1,21 @@
 package com.project.backend.user;
 
+import com.project.backend.components.Contest;
+import com.project.backend.components.Submissions;
 import com.project.backend.config.UpdateProfileService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private final UserRepository userRepository;
     private final UpdateProfileService updateProfileService;
 
-    public UserController(UpdateProfileService updateProfileService) {
+    public UserController(UserRepository userRepository, UpdateProfileService updateProfileService) {
+        this.userRepository = userRepository;
         this.updateProfileService = updateProfileService;
     }
 

@@ -48,4 +48,7 @@ public class Problems {
 
     @OneToMany(mappedBy = "problem")
     private List<Submissions> submissions;
+
+    @ManyToMany(mappedBy = "problems")
+    private List<Contest> contests;
 }
