@@ -22,17 +22,17 @@ export default function GridItem({
  return (
    <li className={`list-none ${area}`}>
      <div className="relative h-full rounded-2.5xl border p-2 md:rounded-3xl md:p-3 border-b-cyan-500">
-       <GlowingEffect
+       {/* <GlowingEffect
          spread={40}
          glow={true}
          disabled={false}
          proximity={64}
          inactiveZone={0.01}
-       />
+       /> */}
        <div
-         className={`relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-0.75 p-3 dark:shadow-[0px_0px_27px_0px_#2D2D2D] md:p-3 bg-gradient-to-tr from-teal-950 via-cyan-900 to-black`}
+         className={`relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-0.75 p-3 dark:shadow-[0px_0px_27px_0px_#2D2D2D] md:p-3`}
        >
-         <div className="relative flex flex-1 flex-col justify-between gap-3">
+         <div className="relative flex flex-1 flex-col justify-between gap-2">
           {(icon||title)&&(
             <div className="flex flex-row items-start justify-start gap-3">
             {icon&&(
@@ -55,7 +55,7 @@ export default function GridItem({
           )}
            <h2
              className={`[&_b]:md:font-semibold [&_strong]:md:font-semibold font-sans text-sm/[1.125rem] 
-   md:text-base/[1.375rem] text-black dark:text-neutral-400 ${descriptionClassName}`}
+   md:text-base/[1.375rem] text-black dark:text-neutral-400${descriptionClassName}`}
            >
              {description}
            </h2>

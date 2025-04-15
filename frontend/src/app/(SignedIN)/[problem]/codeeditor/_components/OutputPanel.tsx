@@ -113,34 +113,14 @@ export default function TestCases({className}: TestCasesProps) {
     });
   };
 
-  // useEffect(() => {
-  //   updateResults();
-  // }, [testCases]);
-  // const { attributes, listeners, setNodeRef: setDraggableNodeRef, transform } = useDraggable({
-  //   id: itemId,
-  // });
-
-  // const style = transform
-  //   ? {
-  //       transform: `translate(${transform.x}px, ${transform.y}px)`,
-  //     }
-  //   : undefined;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`h-4/12 flex flex-col backdrop-blur-md bg-black/40 border border-[#ff9240]/30 rounded-xl overflow-hidden ${className}`}
+      className={`flex flex-col backdrop-blur-md bg-black/40 border border-cyan-300/30 rounded-xl overflow-y-auto  ${className}`}
     >
-      {/* <div ref={setNodeRef} className='h-full w-full'>
-        <div   ref={setDraggableNodeRef}
-        {...listeners}
-        {...attributes}
-        style={style}
-        className='h-full w-full'> */}
-      {/* Header with Test Controls */}
-      <div className="bg-black/40 border-b border-[#ff9240]/20 ">
+      <div className="bg-black/40 border-b border-cyan-300/50 ">
         <div 
         className="px-6 py-1 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -151,7 +131,7 @@ export default function TestCases({className}: TestCasesProps) {
                 onClick={() => setActiveView("cases")}
                 className={`px-3 py-1 rounded-lg flex items-center gap-2 transition-colors ${
                   activeView === "cases"
-                  ? "bg-[#ff9240]/20 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
+                  ? "bg-cyan-300/50 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
                   : "text-white/50 hover:text-orange"
                 }`}
               >
@@ -164,7 +144,7 @@ export default function TestCases({className}: TestCasesProps) {
                 onClick={() => setActiveView("results")}
                 className={`px-3 py-1.5 rounded-lg flex items-center gap-2 transition-colors ${
                   activeView === "results"
-                  ? "bg-[#ff9240]/20 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
+                  ? "bg-cyan-300/50 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
                   : "text-white/50 hover:text-orange"
                 }`}
               >
@@ -177,7 +157,7 @@ export default function TestCases({className}: TestCasesProps) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={runAllTestCases}
-            className="flex items-center gap-2 px-4 py-1 rounded-lg bg-[#ff9240]/10 border border-[#ff9240]/30 text-white hover:bg-[#ff9240]/20 transition-colors"
+            className="flex items-center gap-2 px-4 py-1 rounded-lg bg-cyan-300/50 border border-cyan-300/50 text-white hover:bg-cyan-300/50 transition-colors"
           >
             <Play className="w-4 h-4" />
             Run All Tests
@@ -185,7 +165,7 @@ export default function TestCases({className}: TestCasesProps) {
         </div>
       </div>
       {/* Header for Test Cases */}
-      <div className="bg-black/30 border-b border-[#ff9240]/20">
+      <div className="bg-black/30 border-b border-cyan-300/50">
         <div className="px-3 py-0.5 flex items-center gap-2 overflow-x-auto">
           {testCases.map((testCase) => (
         <motion.button
@@ -195,7 +175,7 @@ export default function TestCases({className}: TestCasesProps) {
           onClick={() => setActiveView(`case-${testCase.id}`)}
           className={`px-2 py-0.5 rounded-lg flex items-center gap-1 transition-colors text-xs ${
             activeView === `case-${testCase.id}`
-          ? "bg-[#ff9240]/20 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
+          ? "bg-cyan-300/50 text-white shadow-[0_0_10px_rgba(255,146,64,0.3)]"
           : "text-white/50 hover:text-orange"
           }`}
         >
@@ -229,9 +209,9 @@ export default function TestCases({className}: TestCasesProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="border border-[#ff9240]/20 rounded-lg bg-black/20"
+            className="border border-cyan-300/50 rounded-lg bg-black/20"
           >
-            <div className="flex items-center justify-between bg-black/30 px-3 py-2 border-b border-[#ff9240]/20">
+            <div className="flex items-center justify-between bg-black/30 px-3 py-2 border-b border-cyan-300/50">
               <div className="text-white/90 font-medium text-sm">
             Test Case {testCase.id}
               </div>
@@ -258,7 +238,7 @@ export default function TestCases({className}: TestCasesProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => runTestCase(testCase.id)}
-              className="px-2 py-1 rounded-lg bg-[#ff9240]/10 border border-[#ff9240]/30 text-white hover:bg-[#ff9240]/20 transition-colors flex items-center gap-1 text-xs"
+              className="px-2 py-1 rounded-lg bg-cyan-300/50 border border-cyan-300/50 text-white hover:bg-cyan-300/50 transition-colors flex items-center gap-1 text-xs"
             >
               <Play className="w-3 h-3" />
               Run
@@ -269,14 +249,14 @@ export default function TestCases({className}: TestCasesProps) {
                     <div className="p-4 space-y-3">
                       <div>
                         <div className="text-sm text-white/70 mb-1">Input:</div>
-                        <div className="bg-black/30 border border-[#ff9240]/20 rounded-lg p-3 font-mono text-white/90 text-sm">
+                        <div className="bg-black/30 border border-cyan-300/20 rounded-lg p-3 font-mono text-white/90 text-sm">
                           {testCase.input}
                         </div>
                       </div>
                       
                       <div>
                         <div className="text-sm text-white/70 mb-1">Expected Output:</div>
-                        <div className="bg-black/30 border border-[#ff9240]/20 rounded-lg p-3 font-mono text-white/90 text-sm">
+                        <div className="bg-black/30 border border-cyan-300/20 rounded-lg p-3 font-mono text-white/90 text-sm">
                           {testCase.expectedOutput}
                         </div>
                       </div>
@@ -296,7 +276,7 @@ export default function TestCases({className}: TestCasesProps) {
                                   ? "bg-green-900/20 border-green-500/30 text-green-400"
                                   : testCase.status === "failed"
                                   ? "bg-red-900/20 border-red-500/30 text-red-400"
-                                  : "bg-black/30 border-[#ff9240]/20 text-white/90"
+                                  : "bg-black/30 border-cyan-300/20 text-white/90"
                               }`}
                             >
                               {testCase.userOutput}
@@ -344,7 +324,7 @@ export default function TestCases({className}: TestCasesProps) {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => runTestCase(testCase.id)}
-                    className="px-3 py-1 rounded-lg bg-[#ff9240]/10 border border-[#ff9240]/30 text-white hover:bg-[#ff9240]/20 transition-colors flex items-center gap-2 text-sm"
+                    className="px-3 py-1 rounded-lg bg-cyan-300/100 border border-cyan-300/30 text-white hover:bg-cyan-300/200 transition-colors flex items-center gap-2 text-sm"
                   >
                     <Play className="w-4 h-4" />
                     Run Test
@@ -353,14 +333,14 @@ export default function TestCases({className}: TestCasesProps) {
                   
                   <div>
                   <div className="text-xs text-white/70 mb-1">Input:</div>
-                  <div className="bg-black/30 border border-[#ff9240]/20 rounded-lg p-3 font-mono text-white/90 text-sm">
+                  <div className="bg-black/30 border border-cyan-300/200 rounded-lg p-3 font-mono text-white/90 text-sm">
                     {testCase.input}
                   </div>
                   </div>
                   
                   <div>
                   <div className="text-xs text-white/70 mb-1">Expected Output:</div>
-                  <div className="bg-black/30 border border-[#ff9240]/20 rounded-lg p-3 font-mono text-white/90 text-sm">
+                  <div className="bg-black/30 border border-cyan-300/200 rounded-lg p-3 font-mono text-white/90 text-sm">
                     {testCase.expectedOutput}
                   </div>
                   </div>
@@ -374,7 +354,7 @@ export default function TestCases({className}: TestCasesProps) {
                       ? "bg-green-900/20 border-green-500/30 text-green-400"
                       : testCase.status === "failed"
                       ? "bg-red-900/20 border-red-500/30 text-red-400"
-                      : "bg-black/30 border-[#ff9240]/20 text-white/90"
+                      : "bg-black/30 border-cyan-300/20 text-white/90"
                     }`}
                     >
                     {testCase.userOutput}
@@ -433,22 +413,22 @@ export default function TestCases({className}: TestCasesProps) {
               <div className="text-white text-lg font-medium">Test Results</div>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-3 flex flex-col items-center justify-center">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/400 rounded-xl p-3 flex flex-col items-center justify-center">
                 <div className="text-white/70 text-xs mb-1">Total Tests</div>
                 <div className="text-white text-xl font-semibold">{results.totalTests}</div>
                 </div>
                 
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-3 flex flex-col items-center justify-center">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/400 rounded-xl p-3 flex flex-col items-center justify-center">
                 <div className="text-green-400/70 text-xs mb-1">Passed</div>
                 <div className="text-green-400 text-xl font-semibold">{results.passedTests}</div>
                 </div>
                 
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-3 flex flex-col items-center justify-center">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/400 rounded-xl p-3 flex flex-col items-center justify-center">
                 <div className="text-red-400/70 text-xs mb-1">Failed</div>
                 <div className="text-red-400 text-xl font-semibold">{results.failedTests}</div>
                 </div>
                 
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-3 flex flex-col items-center justify-center">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/400 rounded-xl p-3 flex flex-col items-center justify-center">
                 <div className="text-white/70 text-xs mb-1">Success Rate</div>
                 <div className="text-white text-xl font-semibold">
                   {results.totalTests > 0 
@@ -459,7 +439,7 @@ export default function TestCases({className}: TestCasesProps) {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-4">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/40 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Timer className="h-4 w-4 text-white/70" />
                   <span className="text-white/90 font-medium text-sm">Performance</span>
@@ -475,7 +455,7 @@ export default function TestCases({className}: TestCasesProps) {
                     <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min(100, results.averageTime / 2)}%` }}
-                    className="h-full bg-[#ff9240] rounded-full"
+                    className="h-full bg-cyan-300 rounded-full"
                     />
                   </div>
                   </div>
@@ -489,14 +469,14 @@ export default function TestCases({className}: TestCasesProps) {
                     <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min(100, parseFloat(results.averageMemory) * 20)}%` }}
-                    className="h-full bg-[#ff9240] rounded-full"
+                    className="h-full bg-cyan-300 rounded-full"
                     />
                   </div>
                   </div>
                 </div>
                 </div>
                 
-                <div className="backdrop-blur-md bg-black/40 border border-[#ff9240]/40 rounded-xl p-4">
+                <div className="backdrop-blur-md bg-black/40 border border-cyan-300/40 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <LineChart className="h-4 w-4 text-white/70" />
                   <span className="text-white/90 font-medium text-sm">Test Details</span>
@@ -516,7 +496,7 @@ export default function TestCases({className}: TestCasesProps) {
                     ) : testCase.status === "failed" ? (
                       <XCircle className="h-4 w-4 text-red-500" />
                     ) : (
-                      <div className="h-4 w-4 rounded-full bg-[#ff9240]/30 animate-pulse-gentle" />
+                      <div className="h-4 w-4 rounded-full bg-cyan-300/30 animate-pulse-gentle" />
                     )}
                     <span className="text-white/90 text-sm">Test Case {testCase.id}</span>
                     </div>

@@ -20,8 +20,8 @@ public class UpdateProfileService {
 
     @Transactional
     public Users updateUserProfile(EditProfileRequest request) {
-        String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = userRepository.findByEmail(currentUserEmail)
+        String currentUserUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userRepository.findByUsername(currentUserUsername)
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
 
         if(request.getUsername()!=null && !request.getUsername().isBlank()) {
@@ -29,7 +29,7 @@ public class UpdateProfileService {
         }
 
         if (request.getEmail() != null && !request.getEmail().isBlank()) {
-            if (!request.getEmail().equals(currentUserEmail)) {
+            if (!request.getEmail().equals(user.getEmail())) {
                 throw new RuntimeException("You are not allowed to change email.");
             }
         }

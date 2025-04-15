@@ -27,10 +27,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/v1/auth/**",
-                                "/api/users/**",
+                                "/api/v1/users/**",
                                 "/api/forums/**",
                                 "/api/contact/**",
-                                "/api/problems/**"
+                                "/api/v1/problems/**"
                         )
                         .permitAll()
                         .anyRequest()

@@ -40,6 +40,7 @@ public class GoogleAuthController {
                     .build();
             return userRepository.save(newUser);
         });
+        System.out.println(user.getUsername());
         return jwtService.generateTokenForGoogleUser(user.getEmail(), user.getUsername(), user.getProfilePhoto());
     }
 }

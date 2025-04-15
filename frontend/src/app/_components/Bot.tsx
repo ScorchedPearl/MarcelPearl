@@ -22,7 +22,7 @@ export default function Bot() {
      castShadow
      target={Target.current || undefined}
     />
-    <PearlRabbit ref={Target} scale={0.2} position={[0,-3,0]}/>
+    <PearlRabbit ref={Target} scale={0.2} position={[0,-3,0]} idle={true} />
    </Canvas>
    </div>
   </>

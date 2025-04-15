@@ -36,8 +36,8 @@ public class ContestController {
 
     @PostMapping("/{contestId}/join")
     public ResponseEntity<String> joinContest(@PathVariable Long contestId) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = userRepository.findByEmail(email)
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Contest contest = contestRepository.findById(contestId)
@@ -60,8 +60,8 @@ public class ContestController {
 
     @GetMapping("/{contestId}/problems")
     public ResponseEntity<?> getAllProblems(@PathVariable Long contestId) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = userRepository.findByEmail(email)
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Contest contest = contestRepository.findById(contestId)

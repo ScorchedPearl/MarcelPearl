@@ -25,7 +25,7 @@ public class ForumController {
             @RequestBody Forums forum,
             Principal principal
     ) {
-        Users user = userRepository.findByEmail(principal.getName())
+        Users user = userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         forum.setUser(user);
         forum.setCreatedAt(LocalDateTime.now());
@@ -47,7 +47,7 @@ public class ForumController {
 
     @GetMapping("/my-forums")
     public ResponseEntity<List<Forums>> getMyForums(Principal principal) {
-        Users user=userRepository.findByEmail(principal.getName())
+        Users user=userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         List<Forums> forums=forumRepository.findByUser(user);
         return ResponseEntity.ok(forums);

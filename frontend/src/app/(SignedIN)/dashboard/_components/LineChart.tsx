@@ -66,7 +66,7 @@ export function ContestChart() {
             <Line
               dataKey="desktop"
               type="natural"
-              stroke="var(--color-desktop)"
+              stroke="white"
               strokeWidth={2}
               dot={{
                 fill: "var(--color-desktop)",

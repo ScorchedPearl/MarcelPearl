@@ -5,17 +5,54 @@ import * as THREE from 'three'
 export function PearlRabbit(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/animations_rabbid.glb')
-  const { actions } = useAnimations(animations, group)
-  useEffect(() => {
-   const action = actions[`${props.animation}`];
-   if (action) {
-     action.play();
-     action.setLoop(THREE.LoopRepeat, props.loop || Infinity);
-     action.setEffectiveWeight(props.weight || 1);
-     action.setEffectiveTimeScale(props.timescale || 1);
-     action.setDuration(props.duration || 1);
-   }
- }, [actions, props.animation, props.loop, props.weight, props.timescale, props.duration]);
+  const animationFrames=["rabbid.qc_skeleton|Idle1","rabbid.qc_skeleton|Idle2","rabbid.qc_skeleton|IdleLook"]
+  const { actions } = useAnimations(animations, group);
+ let action = actions[props.animation]||null;
+useEffect(() => {
+  if (props.idle) {
+    let timeout;
+    const startAnimation = () => {
+      console.log("Animation started");
+      const newAnimation = animationFrames[Math.floor(Math.random() * animationFrames.length)];
+      action=actions[`rabbid.qc_skeleton|Dance1`];
+      console.log("New animation:", newAnimation);
+      console.log("New animation set:", action);
+    };
+    const resetTimer = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        startAnimation();
+      }, 5000);
+    };
+    const handleUserActivity = () => {
+      console.log("User activity detected");
+      resetTimer();
+    };
+    window.addEventListener("click", handleUserActivity);
+    resetTimer();
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("click", handleUserActivity);
+    };
+  }
+}, [props.idle, animationFrames]);
+useEffect(() => {
+ console.log("Animation changed:", action);
+  if (actions && action) {
+    console.log("Playing animation:", action);
+    action.reset().fadeIn(0.5).play();
+    action.setLoop(THREE.LoopRepeat, props.loop || Infinity);
+    action.setEffectiveWeight(props.weight || 1);
+    action.setEffectiveTimeScale(props.timescale || 1);
+    action.setDuration(props.duration || 1);
+  }
+  return () => {
+    if (actions&&action) {
+      console.log("Stopping animation:", action);
+      action.fadeOut(0.5);
+    }
+  };
+}, [actions, action, props.loop, props.weight, props.timescale, props.duration]);
 
   return (
    <group ref={group} {...props} dispose={null}>
@@ -78,4 +115,4 @@ export function PearlRabbit(props) {
   )
  }
 
- useGLTF.preload('/animations_rabbid.glb')
+ useGLTF.preload('/animations_rabbid.glb');

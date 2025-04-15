@@ -160,16 +160,13 @@ export default function AuthForm() {
     access_token: string;
   }
 
-  interface AuthResponse {
-    token: string;
-  }
 
   const handleLoginGoogle = useCallback(async (cred: GoogleCredential) => {
     const token = cred.access_token;
     console.log(token);
     console.log(`${process.env.HTTP_SERVER_URL}/api/v1/auth/google`);
-    const response = await axios.post(`http://localhost:8080/api/v1/auth/google`, {
-      token,
+    const response = await axios.post(`http://localhost:8080/api/v1/auth/google`,{
+      token:token,
     }, {
       headers: {
         'Content-Type': 'application/json',
@@ -178,8 +175,10 @@ export default function AuthForm() {
     if (!response) {
       throw new Error('Failed to authenticate');
     }
-    const data: AuthResponse = await response.data;
-    data.token && localStorage.setItem('__Pearl_Token', data.token);
+    const data= await response.data;
+    console.log(data);
+    data&&localStorage.setItem('__Pearl_Token', data);
+    console.log(data);
   redirect("/home");
   }, []);
 

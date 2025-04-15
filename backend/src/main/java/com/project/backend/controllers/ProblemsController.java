@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/problems")
+@RequestMapping("/api/v1/problems")
 @RequiredArgsConstructor
 public class ProblemsController {
     private final UserRepository userRepository;
