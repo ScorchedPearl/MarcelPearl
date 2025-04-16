@@ -20,12 +20,12 @@ public class UpdateProfileService {
 
     @Transactional
     public Users updateUserProfile(EditProfileRequest request) {
-        String currentUserUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = userRepository.findByUsername(currentUserUsername)
+        String marcelPearlId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userRepository.findByMarcelPearlId(marcelPearlId)
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
 
-        if(request.getUsername()!=null && !request.getUsername().isBlank()) {
-            user.setUsername(request.getUsername());
+        if(request.getName()!=null && !request.getName().isBlank()) {
+            user.setName(request.getName());
         }
 
         if (request.getEmail() != null && !request.getEmail().isBlank()) {

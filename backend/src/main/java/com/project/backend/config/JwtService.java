@@ -30,7 +30,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 7))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -39,11 +39,12 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    public String generateTokenForGoogleUser(String email, String name, String profilePicture) {
+    public String generateTokenForGoogleUser(String name,String email,String marcelPearlId,String profilePicture) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("name", name);
+        claims.put("email", email);
         claims.put("profilePicture", profilePicture);
-        return generateToken(claims, new User(email, "", new ArrayList<>()));
+        return generateToken(claims, new User(marcelPearlId, "", new ArrayList<>()));
     }
 
     private Claims extractAllClaims(String token) {
@@ -55,8 +56,8 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return !isTokenExpired(token) && username.equals(userDetails.getUsername());
+        final String marcelPearlId = extractMarcelPearlId(token);
+        return !isTokenExpired(token) && marcelPearlId.equals(userDetails.getUsername());
     }
 
     private boolean isTokenExpired(String token) {
@@ -68,7 +69,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String extractUsername(String token) {
+    public String extractMarcelPearlId(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 

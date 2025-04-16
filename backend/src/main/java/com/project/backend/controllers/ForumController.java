@@ -25,7 +25,7 @@ public class ForumController {
             @RequestBody Forums forum,
             Principal principal
     ) {
-        Users user = userRepository.findByUsername(principal.getName())
+        Users user = userRepository.findByMarcelPearlId(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         forum.setUser(user);
         forum.setCreatedAt(LocalDateTime.now());
@@ -47,15 +47,15 @@ public class ForumController {
 
     @GetMapping("/my-forums")
     public ResponseEntity<List<Forums>> getMyForums(Principal principal) {
-        Users user=userRepository.findByUsername(principal.getName())
+        Users user=userRepository.findByMarcelPearlId(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         List<Forums> forums=forumRepository.findByUser(user);
         return ResponseEntity.ok(forums);
     }
 
     @GetMapping("/user/{username}")
-    public ResponseEntity<List<Forums>> getMyForums(@PathVariable String username) {
-        Users user=userRepository.findByUsername(username)
+    public ResponseEntity<List<Forums>> getUserForums(@PathVariable String marcelPearlId) {
+        Users user=userRepository.findByMarcelPearlId(marcelPearlId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         List<Forums> forums=forumRepository.findByUser(user);
         return ResponseEntity.ok(forums);

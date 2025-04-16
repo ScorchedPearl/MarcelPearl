@@ -26,9 +26,11 @@ public class Users implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Username is required")
+    private String name;
+
+    @NotBlank(message = "UserId is required")
     @Column(unique = true, nullable = false)
-    private String username;
+    private String marcelPearlId;
 
     @Column(unique = true, nullable = false)
     @Pattern(
@@ -102,8 +104,8 @@ public class Users implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return username;
+    public String getUsername () {
+        return marcelPearlId;
     }
 
     @Override

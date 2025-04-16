@@ -28,10 +28,9 @@ public class UserController {
 
     @GetMapping("/current-user")
     public ResponseEntity<Optional<Users>> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
-        System.out.println(userDetails.getUsername());
-        var username= userDetails.getUsername();
-        var currentUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+        var marcelPearlId= userDetails.getUsername();
+        var currentUser = userRepository.findByMarcelPearlId(marcelPearlId)
+                .orElseThrow(() -> new UsernameNotFoundException(marcelPearlId));
         return ResponseEntity.ok(Optional.ofNullable(currentUser));
     }
 }

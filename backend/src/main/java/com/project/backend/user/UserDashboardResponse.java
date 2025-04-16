@@ -11,7 +11,8 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 public class UserDashboardResponse {
-    private String name;
+    private String username;
+    private String MarcelPearlId;
     private String bio;
     private List<String> badges;
     private String profilePhoto;

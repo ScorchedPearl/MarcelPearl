@@ -26,8 +26,8 @@ public class DashboardController {
     private final UserRepository userRepository;
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserDashboardResponse> getDashboardData(@PathVariable String username){
-        Users user=userRepository.findByUsername(username)
+    public ResponseEntity<UserDashboardResponse> getDashboardData(@PathVariable String marcelPearlId){
+        Users user=userRepository.findByMarcelPearlId(marcelPearlId)
                 .orElseThrow(()-> new RuntimeException("User Not Found"));
 
         Map<String,Long> difficultyCount = user.getProblems().stream()
@@ -52,7 +52,8 @@ public class DashboardController {
         List<Forums> forums = user.getForums();
 
         UserDashboardResponse response = new UserDashboardResponse(
-                user.getUsername(),
+                user.getName(),
+                user.getMarcelPearlId(),
                 user.getBio(),
                 user.getBadges(),
                 user.getProfilePhoto(),

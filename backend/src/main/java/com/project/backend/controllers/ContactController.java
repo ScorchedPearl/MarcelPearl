@@ -26,7 +26,7 @@ public class ContactController {
             @RequestBody ContactRequest request,
             Principal principal
     ){
-        Users user = userRepository.findByEmail(principal.getName())
+        Users user = userRepository.findByMarcelPearlId(principal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         String subject="Contact Form Submission from " + user.getUsername();
         String body="Sender: " + user.getUsername() + "\n" +

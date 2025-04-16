@@ -4,10 +4,12 @@ import com.project.backend.config.JwtService;
 import com.project.backend.user.Role;
 import com.project.backend.user.UserRepository;
 import com.project.backend.user.Users;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -26,21 +28,24 @@ public class GoogleAuthController {
     }
 
     @PostMapping("/google")
+    @Transactional
     public String authenticateWithGoogle(@RequestBody GoogleAuthenticationRequest request) {
-        var token=request.getToken();
+        var token = request.getToken();
         GoogleUserDto googleUser = googleAuthService.getGoogleUserInfo(token);
-        Optional<Users> userOptional = userRepository.findByEmail(googleUser.getEmail());
+        Optional<Users> userOptional = userRepository.findByMarcelPearlId(googleUser.getEmail());
         Users user = userOptional.orElseGet(() -> {
             var newUser = Users.builder()
-                    .username(googleUser.getName())
+                    .marcelPearlId(UUID.randomUUID().toString())
+                    .name(googleUser.getName())
                     .email(googleUser.getEmail())
-                    .password(passwordEncoder.encode("hello*world"))
+                    .password(passwordEncoder.encode(UUID.randomUUID().toString()))  // Random password
                     .profilePhoto(googleUser.getProfilePicture())
                     .role(Role.USER)
                     .build();
+            System.out.println("new user"+newUser);
             return userRepository.save(newUser);
         });
-        System.out.println(user.getUsername());
-        return jwtService.generateTokenForGoogleUser(user.getEmail(), user.getUsername(), user.getProfilePhoto());
+        return jwtService.generateTokenForGoogleUser(user.getName(), user.getEmail(), user.getMarcelPearlId(), user.getProfilePhoto());
     }
+
 }
